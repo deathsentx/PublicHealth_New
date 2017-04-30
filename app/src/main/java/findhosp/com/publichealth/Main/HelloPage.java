@@ -32,9 +32,9 @@ public class HelloPage extends AppCompatActivity {
 
     private void showGPSDisabledAlertToUser() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("GPS is disabled in your device. Would you like to enable it?")
+        alertDialogBuilder.setMessage("คุณเปิดใช้งาน GPS แล้วหรือไม่?"+"\nกรุณาตรวจสอบการเปิดใช้งาน GPS")
                 .setCancelable(false)
-                .setPositiveButton("Goto Settings Page To Enable GPS",
+                .setPositiveButton("ไปยังหน้าตั้งค่าเปิดใช่งาน GPS",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent callGPSSettingIntent = new Intent(
@@ -42,11 +42,13 @@ public class HelloPage extends AppCompatActivity {
                                 startActivity(callGPSSettingIntent);
                             }
                         });
-        alertDialogBuilder.setNegativeButton("Cancel",
+        alertDialogBuilder.setNegativeButton("ยกเลิก",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
+                        showGPSDisabledAlertToUser();
                     }
+
                 });
         AlertDialog alert = alertDialogBuilder.create();
         alert.show();
